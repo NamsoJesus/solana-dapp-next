@@ -14,19 +14,21 @@ import { clusterApiUrl } from '@solana/web3.js';
 import { FC, ReactNode, useCallback, useMemo } from 'react';
 import { AutoConnectProvider, useAutoConnect } from './AutoConnectProvider';
 import { notify } from "../utils/notifications";
+import { SOLANA_HOST } from 'utils/const';
 
 const WalletContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
+    const endpoint = useMemo( ()=> SOLANA_HOST, [] );
     const { autoConnect } = useAutoConnect();
 
     // TODO: WALLET ADAPTER IN GENERAL NEEDS WORK, CONNECTING DIFFERENT WALLETS, NETWORK, REFRESH, EVENTS
 
     {/* TODO: UPDATE CLUSTER PER NETWORK SETTINGS, ADD LOCALHOST + CUSTOMNET | ADAPTER REWORK */ }
     const network = WalletAdapterNetwork.Devnet;
-    const endpoint = useMemo(() => clusterApiUrl(network), [network]);
+    // const endpoint = useMemo(() => clusterApiUrl(network), [network]);
 
     const wallets = useMemo(
         () => [
-            new PhantomWalletAdapter(),
+            new PhantomWalletAdapter({network}),
             new SolflareWalletAdapter(),
             new SolletWalletAdapter({ network }),
             new SolletExtensionWalletAdapter({ network }),

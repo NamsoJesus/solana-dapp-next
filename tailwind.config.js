@@ -14,6 +14,10 @@ module.exports = {
     // TODO: Theme needs works
     themes: [
       {
+        fontFamily: {
+         sans: ['Staatliches'],
+         parrafo: ['Poppins, sans-serif'] 
+        },
         'solana': {                          /* your theme name */
           fontFamily: {
             display: ['PT Mono, monospace'],

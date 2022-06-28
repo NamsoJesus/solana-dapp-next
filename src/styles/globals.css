@@ -6,8 +6,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Staatliches', cursive;
 }
 
 a {
@@ -18,9 +17,24 @@ a {
 * {
   box-sizing: border-box;
 }
-
+p {
+  font-family: 'Poppins', sans-serif;
+}
+/* .font-big-letters {
+  font-family: 'Staatliches', cursive;
+}
+.font-small-letters {
+  font-family: 'Poppins', sans-serif;
+} */
 /* example: override wallet button style */
 .wallet-adapter-button:not([disabled]):hover {
   background-color: #707070;
 }
 
+
+.overflow-hidden-scroll {
+  overflow-y: hidden;
+}
+.font-color {
+ color: #D3D3D3
+}

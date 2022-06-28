@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.gradient-transparency{
+    background-image: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1),#008b8b );
+    max-width: 1440px;
+    min-width: 1200px;
+}

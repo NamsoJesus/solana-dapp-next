@@ -1,6 +1,9 @@
 // Next, React
 import { FC, useEffect, useState } from 'react';
 import Link from 'next/link';
+import { Fragment } from 'react'
+import { Disclosure, Menu, Transition } from '@headlessui/react'
+import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 
 // Wallet
 import { useWallet, useConnection } from '@solana/wallet-adapter-react';
@@ -11,11 +14,40 @@ import pkg from '../../../package.json';
 
 // Store
 import useUserSOLBalanceStore from '../../stores/useUserSOLBalanceStore';
+import { FirstCuarter } from 'components/Homepage/FirstCuarter';
+import { SecondCuarter } from 'components/Homepage/SecondCuarter';
+import { ThirdCuarter } from 'components/Homepage/ThirdCuarter';
+import { ForthCuarter } from 'components/Homepage/ForthCuarter';
 
 export const HomeView: FC = ({ }) => {
+
+  const user = {
+    name: 'Tom Cook',
+    email: 'tom@example.com',
+    imageUrl:
+      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+  };
+  const navigation = [
+    { name: 'Dashboard', href: '#', current: true },
+    { name: 'Team', href: '#', current: false },
+    { name: 'Projects', href: '#', current: false },
+    { name: 'Calendar', href: '#', current: false },
+    { name: 'Reports', href: '#', current: false },
+  ];
+
+  const userNavigation = [
+    { name: 'Your Profile', href: '#' },
+    { name: 'Settings', href: '#' },
+    { name: 'Sign out', href: '#' },
+  ]
+
+  function classNames(...classes) {
+    return classes.filter(Boolean).join(' ')
+  }
+  
+
   const wallet = useWallet();
   const { connection } = useConnection();
-
   const balance = useUserSOLBalanceStore((s) => s.balance)
   const { getUserSOLBalance } = useUserSOLBalanceStore()
 
@@ -27,30 +59,12 @@ export const HomeView: FC = ({ }) => {
   }, [wallet.publicKey, connection, getUserSOLBalance])
 
   return (
-
-    <div className="hero mx-auto p-4 min-h-16 py-4">
-      <div className="hero-content flex flex-col max-w-lg">
-        <h1 className="text-5xl pl-12 font-bold text-transparent bg-clip-text bg-gradient-to-tr from-[#9945FF] to-[#14F195]">
-          Scaffold Lite <span className='text-sm font-normal align-top text-slate-700'>v{pkg.version}</span>
-        </h1>
-        <h4 className="w-full max-w-md mx-auto text-center text-slate-300">
-          <p>Simply the fastest way to start building your dAPP on Solana.</p>
-          Next.js, tailwind, wallet, web3.js, and more.
-        </h4>
-        <div className="mockup-code bg-primary m-0 pl-2 pr-16">
-          <pre data-prefix=">">
-            <code>(Alpha) Start building on Solana with Next.js  </code>
-          </pre>
-        </div>
-        <div>
-          <RequestAirdrop />
-          
-        </div>
-        <div className="text-center">
-          {/* {wallet.publicKey && <p>Public Key: {wallet.publicKey.toBase58()}</p>} */}
-          {wallet && <p>SOL Balance: {(balance || 0).toLocaleString()}</p>}
-        </div>
-      </div>
+    <div className="w-full">
+    
+      <FirstCuarter/>
+      <SecondCuarter/>
+      <ThirdCuarter/>
+      <ForthCuarter/>
     </div>
   );
 };
